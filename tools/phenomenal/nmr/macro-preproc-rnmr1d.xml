@@ -22,14 +22,14 @@
   ]]>
   </command>
   <inputs>
-    <param name="vendor" type="text" format="txt" optional="False" label="Choose the type of data, Vendor (e.gg bruker or varian) or nmrml" help="Type of data nmrML or Vendor." value="nmrml"/>
-    <param name="fid" type="text" format="txt" optional="False" label="data type" help="data type for processing e.g. fid or 1r" value="fid"/>
-    <param name="lb" type="float" format="float" optional="False" label="line broadening (default 0.3)" help="line broadening choose a value between 0.1 to 0.5" value="0.3"/>
-    <param name="zf" type="integer" format="integer" optional="False" label="zero filling (default 4)" help="zero filling by doubling number of points" value="4"/>
-    <param name="phc1" type="text" format="txt" optional="False" label="first order phase correction (default TRUE)" help="Phase correction" value="TRUE"/>
-    <param name="fp" type="float" format="float" optional="False" label="zero order phase correction (default 0)" help="Phase correction, zero order"  value="0"/>
-    <param name="zneg" type="text" format="txt" optional="False" label="zero neg, zeroing the negative values (default FALSE)" value="FALSE"/>
-    <param name="ref" type="select" optional="False" label="Zero ppm calibrating compound in ppm compound, choose TSP, TMS, DSS, ... (default TRUE)" help="Choose a chemical shift reference type, e.g. TSP" value="TRUE">
+    <param name="vendor" type="text" format="txt" optional="False" label="Choose the type of NMR data, Vendor (e.g. bruker or varian) or nmrml" help="NMR data Type; nmrML or Vendor." value="nmrml"/>
+    <param name="fid" type="text" format="txt" optional="False" label="NMR data format" help="Data format for processing e.g. fid or 1r" value="fid"/>
+    <param name="lb" type="float" format="float" optional="False" label="Line Broadening (default 0.3)" help="Line Broadening choose a value recommended between 0.1 to 0.5" value="0.3"/>
+    <param name="zf" type="integer" format="integer" optional="False" label="Zero filling (default 4)" help="Zero filling by doubling number of points x2 or x4" value="4"/>
+    <param name="phc1" type="text" format="txt" optional="False" label="First order phase correction (default TRUE)" help="Phase correction, TRUE for auto correction" value="TRUE"/>
+    <param name="fp" type="float" format="float" optional="False" label="Zero order phase correction (default 0 for auto phase correction)" help="Phase correction, zero order, 0 auto phase correction or enter a value  between 0 and 1" value="0"/>
+    <param name="zneg" type="text" format="txt" optional="False" label="Zeroing the negative values (default FALSE)" help="Zero the negative values, choose TRUE otherwise FALSE not to apply" value="FALSE"/>
+    <param name="ref" type="select" optional="False" label="Zero ppm chemical calibration" help="Choose a compounds used for chemical shift reference calibration, e.g. TSP" value="TRUE">
       <option value="TSP" selected="True">TSP</option>
       <option value="TMS">TMS</option>
       <option value="DSS">DSS</option>
