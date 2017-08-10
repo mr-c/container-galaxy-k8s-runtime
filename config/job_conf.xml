@@ -377,7 +377,7 @@
 
     <!-- MetExplore -->
     <tool id="SBML2Json" destination="container-sbml2metexplorejsongraph" />
-    <!--<tool id="metexploreviz" destination="container-metexploreviz" /> -->
+    <tool id="metexploreviz" destination="container-metexploreviz" />
 
 	<!-- CAMERA -->
 	<tool id="consensusXMLToXcms" destination="camera-container" />

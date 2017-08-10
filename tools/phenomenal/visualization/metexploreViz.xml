@@ -1,4 +1,4 @@
-<tool id="metexploreviz" name="MetexploreViz" version="0.1">
+<tool id="metexploreviz" name="metexploreviz" version="0.1">
 	<stdio>
 		<exit_code range="1:" />
 	</stdio>
