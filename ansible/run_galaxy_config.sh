@@ -20,7 +20,7 @@ trap error_trap ERR
 set -o errexit
 
 if [ -z $GALAXY_SEC_DB_ENGINE ]; then
-  mkdir -p /opt/galaxy_data/database-sqlite
+  mkdir -p /export/galaxy_data/database-sqlite
   log "Galaxy sqlite directory created since we are not using postgresql"
 fi
 
@@ -29,28 +29,33 @@ if [ -f config/galaxy.ini.injected ]; then
   log "Replaced galaxy ini for the user's injected one"
 fi
 
-sudo apt-get update -y && sudo apt-get install -y --no-install-recommends ansible
+# Ansible should be there
+#sudo apt-get update -y && sudo apt-get install -y --no-install-recommends ansible
 ansible-playbook -i "localhost," -c local ansible/set-galaxy-config-values.yaml
 log "Playbook for galaxy config run."
 
+# Do this though env variable (later when merged on ansible galaxy extras)
 if [ ! -z $SUPP_GROUPS ]; then
   cp config/job_conf.xml config/job_conf.xml.original
   sed s/\"k8s_supplemental_group_id\"\>0/\"k8s_supplemental_group_id\"\>$SUPP_GROUPS/ config/job_conf.xml.original > config/job_conf.xml
   log "Changed supplemental group id from 0 to $SUPP_GROUPS on job_conf.xml"
 fi
 
+# Do this though env variable (later when merged on ansible galaxy extras)
 if [ ! -z $FS_GROUP ]; then
   cp config/job_conf.xml config/job_conf.xml.original
   sed s/\"k8s_fs_group_id\"\>0/\"k8s_fs_group_id\"\>$FS_GROUP/ config/job_conf.xml.original > config/job_conf.xml
   log "Changed fs group id from 0 to $FS_GROUP on job_conf.xml"
 fi
 
+# Do this though env variable (later when merged on ansible galaxy extras)
 if [ ! -z $GALAXY_PVC ]; then
   cp config/job_conf.xml config/job_conf.xml.original
   sed s/k8s_persistent_volume_claim_name\"\>.*\</k8s_persistent_volume_claim_name\"\>$GALAXY_PVC\</ config/job_conf.xml.original > config/job_conf.xml
   log "Set PersistentVolumeClaim to use with Galaxy to $GALAXY_PVC on job_conf.xml"
 fi
 
+# Do this though env variable (later when merged on ansible galaxy extras)
 if [ ! -z $GALAXY_TOOLS_PULL_POLICY ]; then
   cp config/job_conf.xml config/job_conf.xml.original
   sed s/k8s_pull_policy\"\>.*\</k8s_pull_policy\"\>$GALAXY_TOOLS_PULL_POLICY\</ config/job_conf.xml.original > config/job_conf.xml
